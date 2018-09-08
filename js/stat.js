@@ -1,28 +1,23 @@
 'use strict';
 
-var popupWidth = 420;
-var popupHeight = 270;
-var popupPositionX = 100;
-var popupPositionY = 10;
-var offset = 10;
+var POPUP_WIDTH = 420;
+var POPUP_HEIGTH = 270;
+var POPUP_POSITION_X = 100;
+var POPUP_POSITION_Y = 10;
+var OFFSET = 10;
 
-var diagramHeight = 150;
-var columnOffset = 50;
-var columnWidth = 40;
+var DIAGRAM_HEIGHT = 150;
+var COLUMN_OFFSET = 50;
+var COLUMN_WIDTH = 40;
 
 
 // отрисовка popup-a на экран
-var viewCover = function (ctx, x, y, BG) {
-  ctx.fillStyle = BG;
-  ctx.fillRect(x, y, popupWidth, popupHeight);
+var viewCover = function (ctx, x, y, bg) {
+  ctx.fillStyle = bg;
+  ctx.fillRect(x, y, POPUP_WIDTH, POPUP_HEIGTH);
 };
 
-// Возвращает случайное число между 0 (включительно) и 1 (не включая 1)
-var getRandom = function () {
-  return Math.random();
-};
-
-var getMaxElement = function (myArray) {
+var getMaxElements = function (myArray) {
   var max = myArray[0];
 
   for (var i = 0; i < myArray.length; i++) {
@@ -35,8 +30,8 @@ var getMaxElement = function (myArray) {
 };
 
 window.renderStatistics = function (ctx, names, times) {
-  viewCover(ctx, popupPositionX + offset, popupPositionY + offset, 'rgba(0, 0, 0, 0.7)');
-  viewCover(ctx, popupPositionX, popupPositionY, 'white');
+  viewCover(ctx, POPUP_POSITION_X + OFFSET, POPUP_POSITION_Y + OFFSET, 'rgba(0, 0, 0, 0.7)');
+  viewCover(ctx, POPUP_POSITION_X, POPUP_POSITION_Y, 'white');
 
   ctx.font = 'normal 16px PT Mono';
   ctx.fillStyle = 'black';
@@ -49,15 +44,15 @@ window.renderStatistics = function (ctx, names, times) {
     if (names[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 255, ' + getRandom() + ')';
+      ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     }
 
-    var gistagramHeight = (times[i] * diagramHeight) / getMaxElement(times);
+    var gistagramHeight = (times[i] * DIAGRAM_HEIGHT) / getMaxElements(times);
 
-    ctx.fillRect(155 + (columnOffset + columnWidth) * i, popupHeight - gistagramHeight - 30, columnWidth, gistagramHeight);
+    ctx.fillRect(155 + (COLUMN_OFFSET + COLUMN_WIDTH) * i, POPUP_HEIGTH - gistagramHeight - 30, COLUMN_WIDTH, gistagramHeight);
 
     ctx.fillStyle = 'black';
-    ctx.fillText(names[i], 155 + (columnOffset + columnWidth) * i, popupHeight - 10);
-    ctx.fillText(Math.round(times[i]), 155 + (columnOffset + columnWidth) * i, popupHeight - 40 - gistagramHeight);
+    ctx.fillText(names[i], 155 + (COLUMN_OFFSET + COLUMN_WIDTH) * i, POPUP_HEIGTH - 10);
+    ctx.fillText(Math.round(times[i]), 155 + (COLUMN_OFFSET + COLUMN_WIDTH) * i, POPUP_HEIGTH - 40 - gistagramHeight);
   }
 };
