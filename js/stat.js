@@ -17,12 +17,12 @@ var viewCover = function (ctx, x, y, bg) {
   ctx.fillRect(x, y, POPUP_WIDTH, POPUP_HEIGTH);
 };
 
-var getMaxElements = function (myArray) {
-  var max = myArray[0];
+var getMaxElement = function (elements) {
+  var max = elements[0];
 
-  for (var i = 0; i < myArray.length; i++) {
-    if (myArray[i] > max) {
-      max = myArray[i];
+  for (var i = 0; i < elements.length; i++) {
+    if (elements[i] > max) {
+      max = elements[i];
     }
   }
 
@@ -47,7 +47,7 @@ window.renderStatistics = function (ctx, names, times) {
       ctx.fillStyle = 'rgba(0, 0, 255, ' + Math.random() + ')';
     }
 
-    var gistagramHeight = (times[i] * DIAGRAM_HEIGHT) / getMaxElements(times);
+    var gistagramHeight = (times[i] * DIAGRAM_HEIGHT) / getMaxElement(times);
 
     ctx.fillRect(155 + (COLUMN_OFFSET + COLUMN_WIDTH) * i, POPUP_HEIGTH - gistagramHeight - 30, COLUMN_WIDTH, gistagramHeight);
 
