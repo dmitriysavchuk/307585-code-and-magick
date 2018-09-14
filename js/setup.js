@@ -21,7 +21,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
     .querySelector('.setup-similar-item');
 
 var generateWizards = function () {
-  var wizardsArray = [];
+  var wizards = [];
 
   for (var i = 0; i < WIZARDS_COUNT; i++) {
     var wizard = {};
@@ -29,10 +29,10 @@ var generateWizards = function () {
     wizard.coatColor = getRandom(WIZARD_COAT_COLOR);
     wizard.eyesColor = getRandom(WIZARD_EYES_COLOR);
 
-    wizardsArray.push(wizard);
+    wizards.push(wizard);
   }
 
-  return wizardsArray;
+  return wizards;
 };
 
 // Функция заполнения блока DOM-элементами на основе массива
@@ -47,10 +47,10 @@ var renderWizard = function (wizard) {
 };
 
 var createWizardItem = function () {
-  var wizardsArray = generateWizards();
+  var wizards = generateWizards();
 
   var fragment = document.createDocumentFragment();
-  wizardsArray.forEach(function (element) {
+  wizards.forEach(function (element) {
     fragment.appendChild(renderWizard(element));
   });
 
