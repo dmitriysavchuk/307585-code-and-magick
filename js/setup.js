@@ -20,9 +20,17 @@ var onPopupEscPress = function (evt) {
   }
 };
 
+// Позиция окна по умолчанию
+var defaultPositionPopup = {
+  x: userDialog.style.left,
+  y: userDialog.style.top
+};
+
 var openPopup = function () {
   userDialog.classList.remove('hidden');
   document.addEventListener('keydown', onPopupEscPress);
+  userDialog.style.left = defaultPositionPopup.x;
+  userDialog.style.top = defaultPositionPopup.y;
 };
 
 var closePopup = function () {
@@ -152,3 +160,5 @@ var createWizardItem = function () {
 similarListElement.appendChild(createWizardItem());
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden');
+
+
