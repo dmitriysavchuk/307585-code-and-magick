@@ -1,8 +1,8 @@
 'use strict';
 
 (function () {
-  var KEY_ESC = 27;
-  var KEY_ENTER = 13;
+  // var KEY_ESC = 27;
+  // var KEY_ENTER = 13;
   var WIZARDS_COUNT = 4;
   var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
   var WIZARD_LAST_NAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
@@ -14,12 +14,6 @@
   var userDialogOpen = document.querySelector('.setup-open');
   var userDialogClose = userDialog.querySelector('.setup-close');
   var setupUserName = userDialog.querySelector('.setup-user-name');
-
-  var onPopupEscPress = function (evt) {
-    if (evt.keyCode === KEY_ESC && document.activeElement !== setupUserName) {
-      closePopup();
-    }
-  };
 
   // Позиция окна по умолчанию
   var defaultPositionPopup = {
@@ -39,14 +33,16 @@
     document.removeEventListener('click', onPopupEscPress);
   };
 
+  var onPopupEscPress = function (evt) {
+    window.util.isEscEvent(evt, closePopup);
+  };
+
   userDialogOpen.addEventListener('click', function () {
     openPopup();
   });
 
   userDialogOpen.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === KEY_ENTER) {
-      openPopup();
-    }
+    window.util.isEnterEvent(evt, openPopup);
   });
 
   userDialogClose.addEventListener('click', function () {
@@ -54,9 +50,7 @@
   });
 
   userDialogClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === KEY_ENTER) {
-      closePopup();
-    }
+    window.util.isEnterEvent(evt, closePopup);
   });
 
   setupUserName.addEventListener('invalid', function () {
