@@ -34,7 +34,9 @@
   };
 
   var onPopupEscPress = function (evt) {
-    window.util.isEscEvent(evt, closePopup);
+    if (window.util.isEscEvent(evt)) {
+      closePopup();
+    }
   };
 
   userDialogOpen.addEventListener('click', function () {
@@ -42,7 +44,9 @@
   });
 
   userDialogOpen.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, openPopup);
+    if (window.util.isEnterEvent(evt)) {
+      openPopup();
+    }
   });
 
   userDialogClose.addEventListener('click', function () {
@@ -50,7 +54,9 @@
   });
 
   userDialogClose.addEventListener('keydown', function (evt) {
-    window.util.isEnterEvent(evt, closePopup);
+    if (window.util.isEnterEvent(evt)) {
+      closePopup();
+    }
   });
 
   setupUserName.addEventListener('invalid', function () {
